@@ -36,6 +36,7 @@ var app = {
 
 
   reqListener: function() {
+    console.log(this.responseText);
     var result = JSON.parse(this.responseText);
     app.container.innerHTML = "";
     result.data.map(function(gif){
@@ -44,12 +45,16 @@ var app = {
   },
 
   createCard: function(gif){
+    var hoverDiv = document.createElement("div");
+    hoverDiv.setAttribute("class", "hover");
+    hoverDiv.innerHTML = '<i class="fa fa-clipboard" aria-hidden="true"></i>';
 
     var div = document.createElement("div");
     div.setAttribute("class", "gif");
     var img = document.createElement("img");
     img.setAttribute("src", gif.images.fixed_height.url);
     div.append(img);
+    div.append(hoverDiv);
     app.container.append(div);
   }
 
@@ -57,38 +62,3 @@ var app = {
 }
 
 app.init();
-
-
-
-// search?q=big+cats
-
-// var apiKey = "bHE29mcCF3FQmpOWEThQO3BFpu01SJZU";
-// var url = "http://api.giphy.com/v1/gifs/trending?&api_key=" + apiKey + "&limit=9";
-//
-//
-//
-// function reqListener () {
-//   var result = JSON.parse(this.responseText);
-//   result.data.map(function(gif){
-//     createCard(gif);
-//   })
-//
-// }
-//
-// var oReq = new XMLHttpRequest();
-// oReq.addEventListener("load", reqListener);
-// oReq.open("GET", url);
-// oReq.send();
-//
-//
-//
-// function createCard(gif){
-//   console.log(gif);
-//   var container = document.getElementById('output');
-//   var div = document.createElement("div");
-//   div.setAttribute("class", "gif");
-//   var img = document.createElement("img");
-//   img.setAttribute("src", gif.images.fixed_height.url);
-//   div.append(img);
-//   container.append(div);
-// }
