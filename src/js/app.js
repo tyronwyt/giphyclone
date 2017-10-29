@@ -22,7 +22,18 @@ var app = {
       app.searchInput.value = "";
       app.search("search?q=" + query);
     })
+    //Textbox enter key
+    document.getElementById("searchInput")
+    .addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+      var query = app.searchInput.value;
+      app.searchInput.value = "";
+      app.search("search?q=" + query);
+    }
+});
   },
+
 
   search: function(search) {
     var searchTerm = app.url + search + "?&api_key=" + app.apiKey + app.limit;
@@ -68,7 +79,7 @@ var app = {
     gifUrl.append(p);
 
     linkContainer.append(gifUrl);
-  
+
 
 
     div.append(img);
